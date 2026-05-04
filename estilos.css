@@ -1,0 +1,136 @@
+/* Estilos para la tienda en línea */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6d7d7;
+}
+.menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #4e8094;
+    padding: 10px 20px;
+}
+.logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+}
+.menu-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+.menu-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.buscar {
+    align-items: center;
+    display: flex;
+    gap: 3px;
+}
+.buscar input {
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+}
+.buscar button {
+    padding: 5px 10px;
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.carro a{
+    padding: 5px 10px;
+    color: white;
+    margin-left: 20px;
+}   
+.usuario {
+    margin-left: 20px;
+}
+.usuario a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: bold;
+}
+.usuario a:hover {
+    color: white;
+}
+
+.header {
+    height: 60px;
+    width: 97%;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+}
+.logo-img {
+    width: 260px;
+    height: 80px;
+    margin-right: 10px;
+}
+.header h1 {
+    margin: 0px;
+    font-size: 37px;
+    color: #333;
+    
+}
+.header p {
+    font-size: 18px;
+    color: #666;
+}
+.productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+.producto {
+    background-color: white;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    height: auto;
+    padding: 10px;
+    width: calc(50% - 10px);
+    box-sizing: border-box;
+}
+.producto img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.producto h3 {
+    margin: 10px 0 5px;
+    font-size: 18px;
+}
+.producto p {
+    margin: 0;
+    color: #555;
+}
+.footer {
+    background-color: #4e8094;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+.footer p {
+    margin: 0;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+
+
