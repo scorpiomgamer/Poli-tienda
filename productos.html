@@ -20,9 +20,6 @@
             <input type="text" placeholder="Buscar productos...">
             <button type="submit">Buscar</button>
         </div>
-        <div class="carro">
-            <a href="carrito.html">Carrito (🛒)</a>
-        </div>
 
         <div class="usuario">
             <a href="login.html">Iniciar Sesión</a>
@@ -66,6 +63,24 @@
         </div>
         <!-- Agrega más productos según sea necesario -->
     </div>
+    
+<!-- Botón para abrir -->
+<button class="carro">🛒</button>
+
+<!-- Estructura del Modal -->
+<dialog id="miDialogo">
+  <h2>Carrito de Compras</h2>
+  <p>Aquí se mostrarán los productos añadidos al carrito.</p>
+  <div id="carritoItems">
+    <!-- Aquí se agregarán los productos del carrito dinámicamente -->
+
+    </div>
+    <div>
+        <p>Total: $0.00</p>
+    </div>
+  <button class="botoncerrar" onclick="miDialogo.close()">Cerrar</button>
+</dialog>
+<button class="carro" onclick="miDialogo.showModal()">🛒</button>
 
 
     <footer class="footer">

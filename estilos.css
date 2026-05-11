@@ -114,6 +114,52 @@ body {
     margin: 0;
     color: #555;
 }
+
+.carro {  
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    align-items: center;
+    left: 50%;
+    background-color: #ffffff;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid #000000;
+    z-index: 100;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    hover: scale(1.1);
+}
+#miDialogo {
+    border: 1px solid #000000;
+    border-radius: 10px;
+    background-color: #ffffff;
+    position: fixed;
+    float: right;
+}
+.botoncerrar{
+    top: 3px;
+    right: 5px;
+    background-color: #058bb4;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.carro:hover {
+    transform: scale(1.1);
+}
+
 .footer {
     background-color: #4e8094;
     color: white;
