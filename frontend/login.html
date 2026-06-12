@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesion - PoliTienda</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <nav class="menu menu-simple">
+        <div class="logo">
+            <a href="index.html" class="logo-text">PoliTienda</a>
+        </div>
+        <div class="usuario">
+            <a href="registro.html">Registrarse</a>
+        </div>
+    </nav>
+
+    <div class="login">
+        <h2>Iniciar Sesion</h2>
+        <p class="subtitulo">Accede a tu cuenta de PoliTienda</p>
+        <form id="formLogin">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+
+            <label for="password">Contrasena:</label>
+            <input type="password" id="password" name="password" required placeholder="Tu contrasena">
+
+            <button type="submit">Iniciar Sesion</button>
+        </form>
+        <p id="mensaje" class="mensaje-form"></p>
+        <p class="enlace-form">No tienes cuenta? <a href="registro.html">Registrate aqui</a></p>
+    </div>
+
+    <script>
+        document.getElementById('formLogin').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const mensaje = document.getElementById('mensaje');
+            mensaje.textContent = 'Verificando...';
+            mensaje.className = 'mensaje-form';
+
+            try {
+                const res = await fetch('/api/usuarios/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: document.getElementById('email').value,
+                        password: document.getElementById('password').value
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    mensaje.textContent = data.error || 'Error al iniciar sesion';
+                    mensaje.className = 'mensaje-form error';
+                    return;
+                }
+
+                localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                mensaje.textContent = data.mensaje;
+                mensaje.className = 'mensaje-form exito';
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            } catch (error) {
+                mensaje.textContent = 'No se pudo conectar con el servidor';
+                mensaje.className = 'mensaje-form error';
+            }
+        });
+    </script>
+</body>
+</html>

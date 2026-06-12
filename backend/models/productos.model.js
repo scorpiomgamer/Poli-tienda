@@ -7,14 +7,17 @@ class ProductoModel {
         const basedatos = await db();
         const resultado = await basedatos.query(`
             SELECT
-                Id,
-                Nombre,
-                Descripcion,
-                Precio,
-                Stock,
-                CategoriaId,
-                FechaCreacion
-            FROM Producto
+                p.Id,
+                p.Nombre,
+                p.Descripcion,
+                p.Precio,
+                p.Stock,
+                p.ImagenUrl,
+                p.CategoriaId,
+                c.Nombre AS Categoria,
+                p.FechaCreacion
+            FROM Producto p
+            LEFT JOIN Categoria c ON p.CategoriaId = c.Id
         `);
         return resultado.recordset;
     }

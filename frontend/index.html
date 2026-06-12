@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoliTienda</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <nav class="menu">
+        <div class="logo">
+            <a href="index.html" class="logo-text">PoliTienda</a>
+        </div>
+        <ul class="menu-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="index.html#data-container">Productos</a></li>
+        </ul>
+
+        <div class="buscar">
+            <input type="text" id="buscar-input" placeholder="Buscar productos...">
+            <button type="button" id="buscar-btn">Buscar</button>
+        </div>
+        <div class="usuario" id="usuario-nav">
+            <a href="login.html">Iniciar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="header">
+        <h1>Bienvenido a PoliTienda</h1>
+        <p>Ropa y accesorios para gatitos</p>
+    </div>
+
+    <main id="data-container" class="productos">
+        <p class="cargando">Cargando productos...</p>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 PoliTienda. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="/app.js"></script>
+    <script>
+        const usuarioGuardado = localStorage.getItem('usuario');
+        const navUsuario = document.getElementById('usuario-nav');
+
+        if (usuarioGuardado && navUsuario) {
+            const usuario = JSON.parse(usuarioGuardado);
+            navUsuario.innerHTML = `<span class="saludo">Hola, ${usuario.nombre}</span> <a href="#" id="cerrar-sesion">Salir</a>`;
+            document.getElementById('cerrar-sesion').addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('usuario');
+                window.location.reload();
+            });
+        }
+    </script>
+</body>
+</html>

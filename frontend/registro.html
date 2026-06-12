@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - PoliTienda</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <nav class="menu menu-simple">
+        <div class="logo">
+            <a href="index.html" class="logo-text">PoliTienda</a>
+        </div>
+        <div class="usuario">
+            <a href="login.html">Iniciar Sesion</a>
+        </div>
+    </nav>
+
+    <div class="register">
+        <h2>Crear Cuenta</h2>
+        <p class="subtitulo">Registrate para comprar en PoliTienda</p>
+        <form id="formRegistro">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="tu@email.com">
+
+            <label for="password">Contrasena:</label>
+            <input type="password" id="password" name="password" required placeholder="Minimo 4 caracteres" minlength="4">
+
+            <button type="submit">Registrarse</button>
+        </form>
+        <p id="mensaje" class="mensaje-form"></p>
+        <p class="enlace-form">Ya tienes cuenta? <a href="login.html">Inicia sesion aqui</a></p>
+    </div>
+
+    <script>
+        document.getElementById('formRegistro').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const mensaje = document.getElementById('mensaje');
+            mensaje.textContent = 'Guardando...';
+            mensaje.className = 'mensaje-form';
+
+            try {
+                const res = await fetch('/api/usuarios/registro', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        nombre: document.getElementById('nombre').value,
+                        email: document.getElementById('email').value,
+                        password: document.getElementById('password').value
+                    })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    mensaje.textContent = data.error || 'Error al registrarse';
+                    mensaje.className = 'mensaje-form error';
+                    return;
+                }
+
+                mensaje.textContent = data.mensaje + ' Ahora puedes iniciar sesion.';
+                mensaje.className = 'mensaje-form exito';
+                document.getElementById('formRegistro').reset();
+
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            } catch (error) {
+                mensaje.textContent = 'No se pudo conectar con el servidor';
+                mensaje.className = 'mensaje-form error';
+            }
+        });
+    </script>
+</body>
+</html>
