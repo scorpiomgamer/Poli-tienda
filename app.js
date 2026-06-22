@@ -1,4 +1,4 @@
-const API_URL = '/api/productos';
+const API_URL = 'http://localhost:3000/api/productos';
 
 function obtenerImagen(item) {
     if (item.ImagenUrl) {

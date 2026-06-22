@@ -1,92 +1,134 @@
+UPDATE Producto
+SET Nombre = 'Camiseta Rayas Azules',
+    Descripcion = 'Camiseta de algod�n transpirable para gatos peque�os.',
+    Precio = 12.99,
+    Stock = 30,
+    ImagenUrl = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+    CategoriaId = 1
+WHERE Id = 1;
 
-CREATE DATABASE Tiendagatuna;
+UPDATE Producto
+SET Nombre = 'Camiseta Super Cat',
+    Descripcion = 'Dise�o divertido con estampado de superh�roe.',
+    Precio = 14.50,
+    Stock = 25,
+    ImagenUrl = 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400',
+    CategoriaId = 1
+WHERE Id = 2;
 
+UPDATE Producto
+SET Nombre = 'Camiseta Deportiva Roja',
+    Descripcion = 'Tela ligera ideal para actividades diarias.',
+    Precio = 13.75,
+    Stock = 20,
+    ImagenUrl = 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400',
+    CategoriaId = 1
+WHERE Id = 3;
 
-USE Tiendagatuna;
+UPDATE Producto
+SET Nombre = 'Disfraz de Le�n',
+    Descripcion = 'Transforma a tu gato en el rey de la selva.',
+    Precio = 19.99,
+    Stock = 15,
+    ImagenUrl = 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400',
+    CategoriaId = 2
+WHERE Id = 4;
 
+UPDATE Producto
+SET Nombre = 'Disfraz de Tibur�n',
+    Descripcion = 'Disfraz acolchado con aleta decorativa.',
+    Precio = 21.50,
+    Stock = 12,
+    ImagenUrl = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400',
+    CategoriaId = 2
+WHERE Id = 5;
 
-CREATE TABLE Categoria (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre VARCHAR(150) NOT NULL,
-    Descripcion TEXT
-);
+UPDATE Producto
+SET Nombre = 'Disfraz de Pirata',
+    Descripcion = 'Incluye sombrero y detalles tem�ticos.',
+    Precio = 18.99,
+    Stock = 18,
+    ImagenUrl = 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400',
+    CategoriaId = 2
+WHERE Id = 6;
 
+UPDATE Producto
+SET Nombre = 'Abrigo Invernal Gris',
+    Descripcion = 'Abrigo t�rmico para climas fr�os.',
+    Precio = 24.99,
+    Stock = 20,
+    ImagenUrl = 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400',
+    CategoriaId = 3
+WHERE Id = 7;
 
-CREATE TABLE Producto (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre VARCHAR(150) NOT NULL,
-    Descripcion TEXT,
-    Precio DECIMAL(10,2) NOT NULL,
-    Stock INT DEFAULT 0,
-    ImagenUrl VARCHAR(500),
-    CategoriaId INT,
-    FechaCreacion DATETIME DEFAULT GETDATE(),
-    CONSTRAINT FK_Producto_Categoria FOREIGN KEY (CategoriaId)
-        REFERENCES Categoria(Id) ON DELETE SET NULL
-);
+UPDATE Producto
+SET Nombre = 'Chaqueta Impermeable',
+    Descripcion = 'Protecci�n ligera contra lluvia y humedad.',
+    Precio = 27.50,
+    Stock = 10,
+    ImagenUrl = 'https://images.unsplash.com/photo-1519052537078-e6302a4968ef?w=400',
+    CategoriaId = 3
+WHERE Id = 8;
 
+UPDATE Producto
+SET Nombre = 'Abrigo Peluche Rosa',
+    Descripcion = 'Material suave y c�lido para m�xima comodidad.',
+    Precio = 26.75,
+    Stock = 14,
+    ImagenUrl = 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400',
+    CategoriaId = 3
+WHERE Id = 9;
 
-CREATE TABLE Usuario (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre VARCHAR(100) NOT NULL,
-    Email VARCHAR(150) NOT NULL UNIQUE,
-    Password VARCHAR(255) NOT NULL,
-    FechaRegistro DATETIME DEFAULT GETDATE()
-);
+UPDATE Producto
+SET Nombre = 'Pijama Estrellas',
+    Descripcion = 'Tela suave con dise�o nocturno.',
+    Precio = 16.99,
+    Stock = 22,
+    ImagenUrl = 'https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400',
+    CategoriaId = 4
+WHERE Id = 10;
 
+UPDATE Producto
+SET Nombre = 'Pijama Ositos',
+    Descripcion = 'Pijama c�modo con estampado de ositos.',
+    Precio = 17.50,
+    Stock = 18,
+    ImagenUrl = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400',
+    CategoriaId = 4
+WHERE Id = 11;
 
--- 1. INSERTAR CATEGORÍAS DE ROPA PARA GATITOS
-INSERT INTO Categoria (Nombre, Descripcion) VALUES
-('Camisetas', 'Prendas ligeras y cómodas para uso diario.'),
-('Disfraces', 'Vestimenta temática para eventos y fotografías.'),
-('Abrigos y Chaquetas', 'Ropa para proteger del frío.'),
-('Pijamas', 'Prendas suaves para descanso y comodidad.'),
-('Accesorios de Moda', 'Corbatas, pañuelos, sombreros y complementos.');
+UPDATE Producto
+SET Nombre = 'Pijama Nubes',
+    Descripcion = 'Prenda ligera ideal para descansar.',
+    Precio = 15.99,
+    Stock = 25,
+    ImagenUrl = 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400',
+    CategoriaId = 4
+WHERE Id = 12;
 
+UPDATE Producto
+SET Nombre = 'Pa�uelo Elegante',
+    Descripcion = 'Pa�uelo ajustable para ocasiones especiales.',
+    Precio = 5.99,
+    Stock = 40,
+    ImagenUrl = 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400',
+    CategoriaId = 5
+WHERE Id = 13;
 
--- 2. INSERTAR PRODUCTOS CON IMÁGENES
-INSERT INTO Producto (Nombre, Descripcion, Precio, Stock, ImagenUrl, CategoriaId) VALUES
+UPDATE Producto
+SET Nombre = 'Corbat�n Formal',
+    Descripcion = 'Accesorio elegante para fotograf�as y eventos.',
+    Precio = 6.50,
+    Stock = 35,
+    ImagenUrl = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
+    CategoriaId = 5
+WHERE Id = 14;
 
--- Camisetas (Id: 1)
-('Camiseta Rayas Azules', 'Camiseta de algodón transpirable para gatos pequeños.', 12.99, 30, 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400', 1),
-('Camiseta Super Cat', 'Diseño divertido con estampado de superhéroe.', 14.50, 25, 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400', 1),
-('Camiseta Deportiva Roja', 'Tela ligera ideal para actividades diarias.', 13.75, 20, 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400', 1),
-
--- Disfraces (Id: 2)
-('Disfraz de León', 'Transforma a tu gato en el rey de la selva.', 19.99, 15, 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400', 2),
-('Disfraz de Tiburón', 'Disfraz acolchado con aleta decorativa.', 21.50, 12, 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400', 2),
-('Disfraz de Pirata', 'Incluye sombrero y detalles temáticos.', 18.99, 18, 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400', 2),
-
--- Abrigos y Chaquetas (Id: 3)
-('Abrigo Invernal Gris', 'Abrigo térmico para climas fríos.', 24.99, 20, 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400', 3),
-('Chaqueta Impermeable', 'Protección ligera contra lluvia y humedad.', 27.50, 10, 'https://images.unsplash.com/photo-1519052537078-e6302a4968ef?w=400', 3),
-('Abrigo Peluche Rosa', 'Material suave y cálido para máxima comodidad.', 26.75, 14, 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400', 3),
-
--- Pijamas (Id: 4)
-('Pijama Estrellas', 'Tela suave con diseño nocturno.', 16.99, 22, 'https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400', 4),
-('Pijama Ositos', 'Pijama cómodo con estampado de ositos.', 17.50, 18, 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400', 4),
-('Pijama Nubes', 'Prenda ligera ideal para descansar.', 15.99, 25, 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400', 4),
-
--- Accesorios de Moda (Id: 5)
-('Pañuelo Elegante', 'Pañuelo ajustable para ocasiones especiales.', 5.99, 40, 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400', 5),
-('Corbatín Formal', 'Accesorio elegante para fotografías y eventos.', 6.50, 35, 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400', 5),
-('Sombrero Vaquero', 'Sombrero decorativo para gatos aventureros.', 8.99, 20, 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400', 5);
-
-
--- Si ya tienes la base creada, ejecuta solo esto:
--- ALTER TABLE Producto ADD ImagenUrl VARCHAR(500);
--- CREATE TABLE Usuario (...);
-
-
--- 3. CONSULTAR PRODUCTOS Y CATEGORÍAS
-SELECT 
-    p.Id,
-    p.Nombre,
-    p.Descripcion,
-    p.Precio,
-    p.Stock,
-    p.ImagenUrl,
-    c.Nombre AS Categoria,
-    p.FechaCreacion
-FROM Producto p
-INNER JOIN Categoria c ON p.CategoriaId = c.Id;
+UPDATE Producto
+SET Nombre = 'Sombrero Vaquero',
+    Descripcion = 'Sombrero decorativo para gatos aventureros.',
+    Precio = 8.99,
+    Stock = 20,
+    ImagenUrl = 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400',
+    CategoriaId = 5
+WHERE Id = 15;

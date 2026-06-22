@@ -1,0 +1,24 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "Producto de ejemplo A",
+    "Descripcion": "Descripción del producto A",
+    "Precio": 9.99,
+    "Stock": 10,
+    "ImagenUrl": "",
+    "CategoriaId": null,
+    "Categoria": null,
+    "FechaCreacion": "2026-01-01T00:00:00Z"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Producto de ejemplo B",
+    "Descripcion": "Descripción del producto B",
+    "Precio": 19.99,
+    "Stock": 5,
+    "ImagenUrl": "",
+    "CategoriaId": null,
+    "Categoria": null,
+    "FechaCreacion": "2026-01-02T00:00:00Z"
+  }
+]
