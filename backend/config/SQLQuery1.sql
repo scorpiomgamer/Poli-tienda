@@ -1,134 +1,99 @@
-UPDATE Producto
-SET Nombre = 'Camiseta Rayas Azules',
-    Descripcion = 'Camiseta de algod�n transpirable para gatos peque�os.',
-    Precio = 12.99,
-    Stock = 30,
-    ImagenUrl = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
-    CategoriaId = 1
-WHERE Id = 1;
+CREATE DATABASE Tiendagatuna;
 
-UPDATE Producto
-SET Nombre = 'Camiseta Super Cat',
-    Descripcion = 'Dise�o divertido con estampado de superh�roe.',
-    Precio = 14.50,
-    Stock = 25,
-    ImagenUrl = 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400',
-    CategoriaId = 1
-WHERE Id = 2;
+CREATE TABLE Categorias (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL UNIQUE,
+    Descripcion TEXT
+);
 
-UPDATE Producto
-SET Nombre = 'Camiseta Deportiva Roja',
-    Descripcion = 'Tela ligera ideal para actividades diarias.',
-    Precio = 13.75,
-    Stock = 20,
-    ImagenUrl = 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400',
-    CategoriaId = 1
-WHERE Id = 3;
 
-UPDATE Producto
-SET Nombre = 'Disfraz de Le�n',
-    Descripcion = 'Transforma a tu gato en el rey de la selva.',
-    Precio = 19.99,
-    Stock = 15,
-    ImagenUrl = 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400',
-    CategoriaId = 2
-WHERE Id = 4;
 
-UPDATE Producto
-SET Nombre = 'Disfraz de Tibur�n',
-    Descripcion = 'Disfraz acolchado con aleta decorativa.',
-    Precio = 21.50,
-    Stock = 12,
-    ImagenUrl = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400',
-    CategoriaId = 2
-WHERE Id = 5;
+CREATE TABLE Producto (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(150) NOT NULL,
+    Descripcion TEXT,
+    Precio DECIMAL(10, 2) NOT NULL,
+    Stock INT DEFAULT 0,
+    CategoriaId INT,
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Productos_Categorias FOREIGN KEY (CategoriaId) 
+        REFERENCES Categorias(Id) ON DELETE SET NULL
+);
 
-UPDATE Producto
-SET Nombre = 'Disfraz de Pirata',
-    Descripcion = 'Incluye sombrero y detalles tem�ticos.',
-    Precio = 18.99,
-    Stock = 18,
-    ImagenUrl = 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400',
-    CategoriaId = 2
-WHERE Id = 6;
 
-UPDATE Producto
-SET Nombre = 'Abrigo Invernal Gris',
-    Descripcion = 'Abrigo t�rmico para climas fr�os.',
-    Precio = 24.99,
-    Stock = 20,
-    ImagenUrl = 'https://images.unsplash.com/photo-1545249390-6bdfa286032f?w=400',
-    CategoriaId = 3
-WHERE Id = 7;
 
-UPDATE Producto
-SET Nombre = 'Chaqueta Impermeable',
-    Descripcion = 'Protecci�n ligera contra lluvia y humedad.',
-    Precio = 27.50,
-    Stock = 10,
-    ImagenUrl = 'https://images.unsplash.com/photo-1519052537078-e6302a4968ef?w=400',
-    CategoriaId = 3
-WHERE Id = 8;
+-- 1. INSERTAR CATEGORÍAS DE EJEMPLO
+-- Guardamos primero las categorías para poder obtener sus IDs (1, 2, 3, 4, 5)
+INSERT INTO Categoria (Nombre, Descripcion) VALUES 
+('Alimentos', 'Comida seca, húmeda y snacks para gatos de todas las edades.'),
+('Juguetes', 'Rascadores, ratones de juguete, cañas y punteros láser.'),
+('Higiene', 'Arenas sanitarias, cajas de arena, palas y champús.'),
+('Accesorios', 'Collares, arneses, transportadoras y camas cómodas.'),
+('Salud y Cuidado', 'Vitaminas, eliminadores de pelo y cepillos para el pelaje.')
 
-UPDATE Producto
-SET Nombre = 'Abrigo Peluche Rosa',
-    Descripcion = 'Material suave y c�lido para m�xima comodidad.',
-    Precio = 26.75,
-    Stock = 14,
-    ImagenUrl = 'https://images.unsplash.com/photo-1574158622682-e40e69881006?w=400',
-    CategoriaId = 3
-WHERE Id = 9;
+-- 2. INSERTAR PRODUCTOS ASOCIADOS A LAS CATEGORÍAS
+-- Nota: No incluimos 'Id' ni 'FechaCreacion' porque se generan automáticamente.
+INSERT INTO Producto (Nombre, Descripcion, Precio, Stock, CategoriaId) VALUES 
+-- Categoría: Alimentos (Id: 1)
+('Alimento Premium Adulto 3kg', 'Comida seca balanceada para gatos adultos con sabor a salmón.', 24.99, 50, 1),
+('Lata de Comida Húmeda Pollo', 'Deliciosa comida húmeda enlatada para gatitos, alta en proteína.', 1.80, 120, 1),
+('Snacks de Catnip', 'Premios crujientes con infusión de menta gatuna.', 3.50, 80, 1),
 
-UPDATE Producto
-SET Nombre = 'Pijama Estrellas',
-    Descripcion = 'Tela suave con dise�o nocturno.',
-    Precio = 16.99,
-    Stock = 22,
-    ImagenUrl = 'https://images.unsplash.com/photo-1513245543132-31f507417b26?w=400',
-    CategoriaId = 4
-WHERE Id = 10;
+-- Categoría: Juguetes (Id: 2)
+('Rascador de Torre de 3 Pisos', 'Árbol rascador grande con plataformas y juguetes colgantes.', 45.00, 15, 2),
+('Caña con Plumas y Cascabel', 'Juguete interactivo para estimular el instinto de caza.', 4.20, 60, 2),
+('Ratón de Juguete a Cuerda', 'Pequeño ratón mecánico que se mueve por el suelo.', 2.99, 100, 2),
 
-UPDATE Producto
-SET Nombre = 'Pijama Ositos',
-    Descripcion = 'Pijama c�modo con estampado de ositos.',
-    Precio = 17.50,
-    Stock = 18,
-    ImagenUrl = 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=400',
-    CategoriaId = 4
-WHERE Id = 11;
+-- Categoría: Higiene (Id: 3)
+('Arena Sanitaria Aglomerante 10kg', 'Arena de bentonita de alta absorción y control de olores.', 12.50, 40, 3),
+('Arenero Cerrado Ergonómico', 'Caja de arena con filtro de carbón para evitar malos olores.', 22.00, 20, 3),
+('Pala Limpiadora Plástica', 'Pala resistente con ranuras óptimas para limpiar el arenero.', 1.50, 75, 3),
 
-UPDATE Producto
-SET Nombre = 'Pijama Nubes',
-    Descripcion = 'Prenda ligera ideal para descansar.',
-    Precio = 15.99,
-    Stock = 25,
-    ImagenUrl = 'https://images.unsplash.com/photo-1495360010544-e79136916477?w=400',
-    CategoriaId = 4
-WHERE Id = 12;
+-- Categoría: Accesorios (Id: 4)
+('Cama Tipo Cueva Ultra Suave', 'Cama acolchada y térmica que ofrece un refugio seguro.', 18.99, 25, 4),
+('Collar Anti-ahogo con Cascabel', 'Collar ajustable con broche de seguridad de liberación rápida.', 3.99, 90, 4),
+('Transportadora Rígida Viajera', 'Caja de viaje segura y ventilada para visitas al veterinario.', 29.50, 18, 4),
 
-UPDATE Producto
-SET Nombre = 'Pa�uelo Elegante',
-    Descripcion = 'Pa�uelo ajustable para ocasiones especiales.',
-    Precio = 5.99,
-    Stock = 40,
-    ImagenUrl = 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?w=400',
-    CategoriaId = 5
-WHERE Id = 13;
+-- Categoría: Salud y Cuidado (Id: 5)
+('Malta para Gatos Anti-Bolas de Pelo', 'Pasta que ayuda a evacuar de forma natural las bolas de pelo.', 6.80, 35, 5),
+('Cepillo Cardina Deslanador', 'Herramienta para remover el pelo muerto y evitar nudos.', 7.20, 50, 5);
+GO
 
-UPDATE Producto
-SET Nombre = 'Corbat�n Formal',
-    Descripcion = 'Accesorio elegante para fotograf�as y eventos.',
-    Precio = 6.50,
-    Stock = 35,
-    ImagenUrl = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=400',
-    CategoriaId = 5
-WHERE Id = 14;
+-- 3. VERIFICAR QUE TODO SE HAYA GUARDADO CORRECTAMENTE
+SELECT p.Id, p.Nombre, p.Precio, p.Stock, c.Nombre AS Categoria, p.FechaCreacion
+FROM Productos p
+INNER JOIN Categoria c ON p.CategoriaId = c.Id;
+GO
 
-UPDATE Producto
-SET Nombre = 'Sombrero Vaquero',
-    Descripcion = 'Sombrero decorativo para gatos aventureros.',
-    Precio = 8.99,
-    Stock = 20,
-    ImagenUrl = 'https://images.unsplash.com/photo-1573865526731-10659fec78a5?w=400',
-    CategoriaId = 5
-WHERE Id = 15;
+CREATE TABLE Venta (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    ProductoId INT NOT NULL,
+    Cantidad INT NOT NULL,
+    PrecioUnitario DECIMAL(10,2) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    FechaVenta DATETIME DEFAULT GETDATE(),
+
+    CONSTRAINT FK_Venta_Producto
+        FOREIGN KEY (ProductoId)
+        REFERENCES Producto(Id)
+);
+
+INSERT INTO Venta (ProductoId, Cantidad, PrecioUnitario, Total, FechaVenta)
+VALUES
+(1, 2, 48900.00, 97800.00, GETDATE()),
+(2, 1, 26900.00, 26900.00, GETDATE()),
+(3, 3, 12900.00, 38700.00, GETDATE()),
+(4, 2, 18900.00, 37800.00, GETDATE()),
+(5, 1, 15900.00, 15900.00, GETDATE()),
+(6, 2, 9900.00, 19800.00, GETDATE()),
+(7, 1, 42900.00, 42900.00, GETDATE()),
+(8, 2, 24900.00, 49800.00, GETDATE()),
+(9, 1, 69900.00, 69900.00, GETDATE()),
+(10, 1, 89900.00, 89900.00, GETDATE()),
+(1, 1, 48900.00, 48900.00, GETDATE()),
+(2, 4, 26900.00, 107600.00, GETDATE()),
+(3, 2, 12900.00, 25800.00, GETDATE()),
+(5, 3, 15900.00, 47700.00, GETDATE()),
+(7, 2, 42900.00, 85800.00, GETDATE());
+
+select * from Venta
